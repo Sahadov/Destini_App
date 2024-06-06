@@ -9,37 +9,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var storyBrain = StoryBrain()
+    
     @IBOutlet weak var storyLabel: UILabel!
     @IBOutlet weak var choice1Button: UIButton!
     @IBOutlet weak var choice2Button: UIButton!
     
-    let stories = [Story(
-        title: "You see a fork in the road.",
-        choice1: "Take a left",
-        choice2: "Take a right"),
-        Story(title: "You see a tiger.",
-        choice1: "Shout for help",
-        choice2: "Play dead"),
-        Story(title: "You find a treasure chest",
-        choice1: "Open it",
-        choice2: "Check for traps")]
-    
-    var currentStoryNumber = 0
-    
     func updateUI(){
-        storyLabel.text = stories[currentStoryNumber].title
-        choice1Button.setTitle(stories[currentStoryNumber].choice1, for: .normal)
-        choice2Button.setTitle(stories[currentStoryNumber].choice2, for: .normal)
+        storyLabel.text = storyBrain.getCurrentStory().title
+        choice1Button.setTitle(storyBrain.getCurrentStory().choice1, for: .normal)
+        choice2Button.setTitle(storyBrain.getCurrentStory().choice2, for: .normal)
     }
     
     
     @IBAction func choicePressed(_ sender: UIButton) {
-        let userAnswer = sender.currentTitle
-        let firstChoice = stories[0].choice1
-        
-        if userAnswer == firstChoice { currentStoryNumber = 1
-        } else { currentStoryNumber = 2 }
+        let userChoice = sender.currentTitle
+        storyBrain.nextStory(userChoice: userChoice!)
         updateUI()
     }
     
