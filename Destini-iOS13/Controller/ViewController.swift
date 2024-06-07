@@ -17,9 +17,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var choice2Button: UIButton!
     
     func updateUI(){
-        storyLabel.text = storyBrain.getCurrentStory().title
-        choice1Button.setTitle(storyBrain.getCurrentStory().choice1, for: .normal)
-        choice2Button.setTitle(storyBrain.getCurrentStory().choice2, for: .normal)
+        storyLabel.text = storyBrain.getStoryTitle()
+        choice1Button.setTitle(storyBrain.getFirstChoice(), for: .normal)
+        choice2Button.setTitle(storyBrain.getSecondChoice(), for: .normal)
     }
     
     
